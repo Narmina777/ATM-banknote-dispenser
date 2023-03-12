@@ -4,7 +4,10 @@ public static class ATM
 {
     public static int GetLargestBanknote(int amount)
     {
+        // You used arrays arrays from future topics, it is OK.
         int[] banknotes = { 1, 5, 10, 20, 50, 100, 200 };
+        
+        // Thanks to array you can do very nice solution via loop, instead of a number 'if' blocks with return.
         for (int i = banknotes.Length - 1; i >= 0; i--)
         {
             if (amount >= banknotes[i])
@@ -12,6 +15,7 @@ public static class ATM
                 return banknotes[i];
             }
         }
+        
         return 0;
     }
 }
@@ -21,6 +25,8 @@ class Program
     static void Main(string[] args)
     {
         Console.WriteLine("Enter the amount you want to withdraw:");
+        
+        // WOW, you used TryParse method with out parameter, this is rather advanced topic of futher lession. 
         if (int.TryParse(Console.ReadLine(), out int amount))
         {
             if (amount < 0)
@@ -37,6 +43,9 @@ class Program
                 while (amount > 0)
                 {
                     int banknote = ATM.GetLargestBanknote(amount);
+                    
+                    // And this way of string interpolationis also rather advanced. Hope you got the idea of it.
+                    // We will review it during futher lessons any way.
                     Console.Write("{0} ", banknote);
                     amount -= banknote;
                 }
