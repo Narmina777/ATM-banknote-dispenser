@@ -1,0 +1,50 @@
+using System;
+
+public static class ATM
+{
+    public static int GetLargestBanknote(int amount)
+    {
+        int[] banknotes = { 1, 5, 10, 20, 50, 100, 200 };
+        for (int i = banknotes.Length - 1; i >= 0; i--)
+        {
+            if (amount >= banknotes[i])
+            {
+                return banknotes[i];
+            }
+        }
+        return 0;
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        Console.WriteLine("Enter the amount you want to withdraw:");
+        if (int.TryParse(Console.ReadLine(), out int amount))
+        {
+            if (amount < 0)
+            {
+                Console.WriteLine("Invalid amount entered.");
+            }
+            else if (amount == 0)
+            {
+                Console.WriteLine("No banknotes to dispense.");
+            }
+            else
+            {
+                Console.WriteLine("Banknotes to dispense:");
+                while (amount > 0)
+                {
+                    int banknote = ATM.GetLargestBanknote(amount);
+                    Console.Write("{0} ", banknote);
+                    amount -= banknote;
+                }
+            }
+        }
+        else
+        {
+            Console.WriteLine("Invalid input entered.");
+        }
+    }
+}
